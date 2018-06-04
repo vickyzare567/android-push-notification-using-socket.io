@@ -79,6 +79,7 @@ io.on('connection', function (socket) {
 
     socket.on('create', function(room) {
         rooms.push(room);
+	console.log('Room Created : '+room)
         socket.emit('updaterooms', rooms, socket.room);
     });
 
