@@ -113,6 +113,10 @@ io.on('connection', function (socket) {
           connections.splice(i,1);
         }
       }
+      delete usernames[socket.username];
+      io.sockets.emit('updateusers', usernames);
+      socket.broadcast.emit('updatechat', 'SERVER', socket.username + ' has disconnected');
+      socket.leave(socket.room);
       console.log('connections');
       console.log(connections);
       console.log('socket disconnected');
