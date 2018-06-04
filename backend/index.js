@@ -72,9 +72,11 @@ io.on('connection', function (socket) {
         socket.room = 'Lobby';
         usernames[username] = username;
         socket.join('Lobby');
+	console.log( username + ' Added to Room '+ room);
         socket.emit('updatechat', 'SERVER', 'you have connected to Lobby');
         socket.broadcast.to('Lobby').emit('updatechat', 'SERVER', username + ' has connected to this room');
-        socket.emit('updaterooms', rooms, 'Lobby');
+      	console.log('Availabe Rooms '+ rooms);
+	socket.emit('updaterooms', rooms, 'Lobby');
     });
 
     socket.on('create', function(room) {
